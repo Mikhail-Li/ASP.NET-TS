@@ -3,8 +3,6 @@ ASP.NET Core WebApi Timesheets
 
 ![Time](/Timesheets/TimeIsCash.png)
 
-<img src="/Timesheets/dBTimesheetsGraph.jpg" alt="dBGraph" width="300"/>
-
 ## Сервис учета рабочего времени
 
 Предназначен для учета затраченного рабочего времени по контрактам и формирования счетов-фактур на основании ведомостей.
@@ -20,7 +18,7 @@ ASP.NET Core WebApi Timesheets
 Объекты: пользователи, сотрудники, сервисы, клиенты, контракты, ведомости, счета-фактуры.
 Для опробования сервиса реализован [Swagger]. 
 
-![Swagger](/Timesheets/swagger_Timesheets.png)
+<img src="/Timesheets/swagger_Timesheets.png" alt="Swagger" align="middle" width="700"/>
 
 ### Алгоритм работы:
 
@@ -29,7 +27,7 @@ ASP.NET Core WebApi Timesheets
 
 Структура БД:
 
-<img src="/Timesheets/dBTimesheetsGraph.jpg" alt="dBGraph" width="300"/>
+<img src="/Timesheets/dBTimesheetsGraph.jpg" alt="dBGraph" width="1000"/>
 
 Стрелками показаны связи в виде внешних ключей _FK - foreign key_.
 В качестве первичных ключей _PK - primary key_ использован статистически уникальный 128-битный идентификатор - _GUID_ ( в таблицах БД uuid).
