@@ -18,9 +18,9 @@ namespace Timesheets.Controllers
             _userManager = userManager;
         }
 
-        /// <summary> Аутентификация пользователя. Возвращает Access Token. </summary>
+        /// <summary> Аутентификация пользователя. Возвращает Access Token.</summary>
         /// <returns>OK</returns>
-        /// <response code="200">Аутентификация выполнена</response>
+        /// <response code="200">Аутентификация выполнена.</response>
         /// <response code="401">Ошибка аутентификации.</response>
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)

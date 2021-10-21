@@ -9,6 +9,11 @@ namespace Timesheets.Data.Ef.Configurations
         public void Configure(EntityTypeBuilder<Contract> builder)
         {
             builder.ToTable("contracts");
+            
+            builder
+                .HasOne(contract => contract.Client)
+                .WithMany(client => client.Contracts)
+                .HasForeignKey("ClientId");
         }
     }
 }

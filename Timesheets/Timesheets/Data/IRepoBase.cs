@@ -6,19 +6,19 @@ namespace Timesheets.Data
 {
     public interface IRepoBase<T>
     {
-        /// <summary>Возвращает экземпляр записи <T></summary>
+        /// <summary> Возвращает экземпляр записи</summary>
         Task<T> GetItem(Guid id);
 
-        /// <summary> Возвращает список записей <T> </summary>
+        /// <summary> Возвращает список записей</summary>
         Task<IEnumerable<T>> GetItems();
 
-        /// <summary> Добавляет запись <T> </summary>
+        /// <summary> Добавляет запись</summary>
         Task Add(T item);
 
-        /// <summary> Обновляет запись <T> </summary>
+        /// <summary> Обновляет запись</summary>
         Task Update(T item);
 
-        /// <summary> Удаляет запись <T> </summary>
+        /// <summary> Удаляет запись</summary>
         Task Delete(Guid id);
     }
 }

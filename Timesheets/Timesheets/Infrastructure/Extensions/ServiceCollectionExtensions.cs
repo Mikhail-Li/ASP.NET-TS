@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Timesheets.Data;
 using Timesheets.Data.Implementation;
 using Timesheets.Data.Interfaces;
 using Timesheets.Domain.Managers.Implementation;
@@ -63,6 +62,7 @@ namespace Timesheets.Infrastructure.Extensions
             services.AddScoped<ILoginManager, LoginManager>();
             services.AddScoped<IInvoiceManager, InvoiceManager>();
             services.AddScoped<IClientManager, ClientManager>();
+            services.AddScoped<IServiceManager, ServiceManager>();
         }
 
         public static void ConfigureRepositories(this IServiceCollection services)
@@ -73,6 +73,7 @@ namespace Timesheets.Infrastructure.Extensions
             services.AddScoped<IEmployeeRepo, EmployeeRepo>();
             services.AddScoped<IInvoiceRepo, InvoiceRepo>();
             services.AddScoped<IClientRepo, ClientRepo>();
+            services.AddScoped<IServiceRepo, ServiceRepo>();
         }
 
         public static void ConfigureBackendSwagger(this IServiceCollection services)
@@ -82,7 +83,7 @@ namespace Timesheets.Infrastructure.Extensions
                 c.SwaggerDoc("v1", new OpenApiInfo { 
                     Title = "Timesheets", 
                     Version = "v1",
-                    Description = "Сервис для управления табелем рабочего времени",
+                    Description = "Сервис для учета рабочего времени",
                     Contact = new OpenApiContact
                     {
                         Name = "Lipunov M",

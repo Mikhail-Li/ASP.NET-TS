@@ -1,18 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Timesheets.Models;
 using Timesheets.Models.Dto;
 using Timesheets.Models.Entities;
 
-namespace Timesheets.Domain.Aggregates.SheetAggregate
+namespace Timesheets.Domain.Aggregates
 {
     public class SheetAggregate : Sheet
     {
         private SheetAggregate() { }
 
-        /// <summary> Создает табель/summary>
+        /// <summary> Создает табель </summary>
         public static SheetAggregate CreateSheet(SheetRequest request)
         {
             return new SheetAggregate()
@@ -26,7 +22,7 @@ namespace Timesheets.Domain.Aggregates.SheetAggregate
             };
         }
 
-        /// <summary> Обновляет табель/summary>
+        /// <summary> Обновляет табель</summary>
         public static SheetAggregate UpdateSheet(Guid sheetId, SheetRequest request, Sheet sheet)
         {
             return new SheetAggregate()

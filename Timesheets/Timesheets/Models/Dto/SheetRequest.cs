@@ -2,7 +2,7 @@
 
 namespace Timesheets.Models.Dto
 {
-    /// <summary> Информация о табеле для создания и обновления </summary>
+    /// <summary> Информация о табеле для создания и обновления.</summary>
     public class SheetRequest
     {
         public DateTime Date { get; set; }

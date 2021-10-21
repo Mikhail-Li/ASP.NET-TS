@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Timesheets.Models.Entities;
 using Timesheets.Models.Dto;
@@ -37,6 +36,7 @@ namespace Timesheets.Domain.Managers.Implementation
             {
                 Id = Guid.NewGuid(),
                 UserId = request.UserId,
+                Title = request.Title,
                 IsDeleted = request.IsDeleted
             };
 
@@ -53,6 +53,7 @@ namespace Timesheets.Domain.Managers.Implementation
             {
                 Id = id,
                 UserId = request.UserId,
+                Title = request.Title,
                 IsDeleted = request.IsDeleted
             };
 

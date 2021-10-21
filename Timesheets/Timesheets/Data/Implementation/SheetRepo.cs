@@ -39,9 +39,17 @@ namespace Timesheets.Data.Implementation
         {
             var sheets = await _context.Sheets
                 .Where(x => x.ContractId == request.ContractId)
+                .Where(x => x.IsApproved == false)
                 .Where(x => x.Date >= request.DateStart && x.Date <= request.DateEnd)
                 .ToListAsync();
 
+            foreach (var sheet in sheets)
+            {
+                sheet.ApproveSheet();
+                _context.Sheets.Update(sheet);
+            }
+            await _context.SaveChangesAsync();
+            
             return sheets;
         }
 

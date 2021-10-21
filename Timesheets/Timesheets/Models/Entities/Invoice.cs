@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using Timesheets.Domain.ValueObjects;
 
 namespace Timesheets.Models.Entities
 {
-    /// <summary> Информация о счет-фактуре в рамках контракта </summary>
+    /// <summary> Информация о счет-фактуре в рамках контракта.</summary>
     public class Invoice
     {
         public Guid Id { get; protected set; }
@@ -15,7 +14,7 @@ namespace Timesheets.Models.Entities
         public Money Sum { get; protected set; }
 
         public Contract Contract { get; protected set; }
-        public List<Sheet> Sheets { get; set; } = new List<Sheet>();
+        public List<Sheet> Sheets { get; } = new List<Sheet>();
 
         protected Invoice() { }
     }

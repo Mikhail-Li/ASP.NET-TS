@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Timesheets.Data.Ef;
 using Timesheets.Data.Interfaces;
 using Timesheets.Models.Entities;
 
@@ -8,29 +11,46 @@ namespace Timesheets.Data.Implementation
 {
     public class ServiceRepo : IServiceRepo
     {
-        public Task Add(Service item)
+        private readonly TimesheetDbContext _context;
+
+        public ServiceRepo(TimesheetDbContext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        
+        public async Task Add(Service item)
+        {
+            await _context.Services.AddAsync(item);
+            await _context.SaveChangesAsync();
         }
 
-        public Task Delete(Guid id)
+        public async Task Delete(Guid id)
         {
-            throw new NotImplementedException();
+            var service = await _context.Services.FindAsync(id);
+            _context.Services.Remove(service);
+            await _context.SaveChangesAsync();
         }
 
-        public Task<Service> GetItem(Guid id)
+        public async Task<Service> GetItem(Guid id)
         {
-            throw new NotImplementedException();
+            var result = await _context.Services
+                .Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
+            
+            return result;
         }
 
-        public Task<IEnumerable<Service>> GetItems()
+        public async Task<IEnumerable<Service>> GetItems()
         {
-            throw new NotImplementedException();
+            var result = await _context.Services.ToListAsync();
+            
+            return result;
         }
 
-        public Task Update(Service item)
+        public async Task Update(Service item)
         {
-            throw new NotImplementedException();
+            _context.Services.Update(item);
+            await _context.SaveChangesAsync();
         }
     }
 }

@@ -28,6 +28,9 @@ namespace Timesheets.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
 
@@ -42,6 +45,9 @@ namespace Timesheets.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ClientId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("DateEnd")
@@ -61,6 +67,8 @@ namespace Timesheets.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ClientId");
+
                     b.ToTable("contracts");
                 });
 
@@ -72,6 +80,12 @@ namespace Timesheets.Migrations
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Post")
+                        .HasColumnType("text");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uuid");
@@ -196,6 +210,17 @@ namespace Timesheets.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("Timesheets.Models.Entities.Contract", b =>
+                {
+                    b.HasOne("Timesheets.Models.Entities.Client", "Client")
+                        .WithMany("Contracts")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Client");
+                });
+
             modelBuilder.Entity("Timesheets.Models.Entities.Employee", b =>
                 {
                     b.HasOne("Timesheets.Models.Entities.User", "User")
@@ -249,6 +274,11 @@ namespace Timesheets.Migrations
                     b.Navigation("Invoice");
 
                     b.Navigation("Service");
+                });
+
+            modelBuilder.Entity("Timesheets.Models.Entities.Client", b =>
+                {
+                    b.Navigation("Contracts");
                 });
 
             modelBuilder.Entity("Timesheets.Models.Entities.Contract", b =>

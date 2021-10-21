@@ -2,7 +2,7 @@
 
 namespace Timesheets.Models.Entities
 {
-    /// <summary> Информация о затраченном времени сотрудника </summary>
+    /// <summary> Информация о затраченном времени сотрудника.</summary>
     public class Sheet
     {
         public Guid Id { get; protected set; }
@@ -24,17 +24,6 @@ namespace Timesheets.Models.Entities
         {
             IsApproved = true;
             ApprovedDate = DateTime.Now;
-        }
-
-        public void ChangeEmployee(Guid newEmployeeId)
-        {
-            EmployeeId = newEmployeeId;
-        }
-
-        public void UnApproveSheet()
-        {
-            IsApproved = false;
-            ApprovedDate = default;
         }
     }
 }

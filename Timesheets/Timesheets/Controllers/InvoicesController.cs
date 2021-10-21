@@ -19,11 +19,11 @@ namespace Timesheets.Controllers
             _invoiceManager = invoiceManager;
         }
 
-        /// <summary> Возвращает клиентский счет по id</summary>
+        /// <summary> Возвращает клиентский счет по id.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Запрос выполнен.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
         [Authorize(Roles = "user, admin, client")]
         [HttpGet("{id}")]
@@ -39,11 +39,11 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        /// <summary> Возвращает список всех счетов</summary>
+        /// <summary> Возвращает список всех счетов.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Запрос выполнен.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
         [Authorize(Roles = "user, admin, manager")]
         [HttpGet("invoices")]
@@ -54,13 +54,13 @@ namespace Timesheets.Controllers
         }
 
 
-        /// <summary> Создает клиентский счет </summary>
+        /// <summary> Создает клиентский счет.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Счет успешно сформирован.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [HttpPost]
         public async Task<IActionResult> CreateInvoice([FromBody] InvoiceRequest invoiceRequest)
         {
@@ -68,13 +68,13 @@ namespace Timesheets.Controllers
             return Ok(id);
         }
 
-        /// <summary> Обновляет клиентский счет </summary>
+        /// <summary> Обновляет клиентский счет.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Счет обновлен.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "user, admin, manager")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] InvoiceRequest invoiceRequest)
@@ -84,12 +84,12 @@ namespace Timesheets.Controllers
             return Ok();
         }
 
-        /// <summary> Удаляет клиентский счет по Id </summary>
+        /// <summary> Удаляет клиентский счет по Id.</summary>
         /// <response code="200">Счет удалён.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)

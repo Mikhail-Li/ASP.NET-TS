@@ -23,11 +23,11 @@ namespace Timesheets.Controllers
             _employeeManager = employeeManager;
         }
 
-        /// <summary> Возвращает экземпляр счета по Id. </summary>
+        /// <summary> Возвращает экземпляр счета по Id.</summary>
         /// <returns>OK</returns>
-        /// <response code="200">Запрос выполнен успешно</response>
+        /// <response code="200">Запрос выполнен успешно.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
         /// <response code="404">Запись табеля не найдена.</response>
         [Authorize(Roles = "user, admin, manager")]
@@ -44,11 +44,11 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        ///<summary> Возвращает список всех табелей из БД</summary>
+        ///<summary> Возвращает список всех табелей из БД.</summary>
         /// <returns>OK</returns>
-        /// <response code="200">Запрос выполнен успешно</response>
+        /// <response code="200">Запрос выполнен успешно.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
         [Authorize(Roles = "user, admin, manager")]
         [HttpGet("sheets")]
@@ -58,13 +58,13 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        /// <summary> Добавляет запись табеля и возвращает сгенерированный Id нового табеля </summary>
+        /// <summary> Добавляет запись табеля и возвращает сгенерированный Id нового табеля.</summary>
         /// <returns>OK</returns>
-        /// <response code="200">Табель успешно создан</response>
+        /// <response code="200">Табель успешно создан.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "user, admin, manager")]
         [HttpPost("sheet")]
         public async Task<IActionResult> Create([FromBody] SheetRequest request)
@@ -80,13 +80,13 @@ namespace Timesheets.Controllers
             return Ok(id);
         }
 
-        /// <summary> Обновляет данные записи табеля </summary>
+        /// <summary> Обновляет данные записи табеля.</summary>
         /// <returns>OK</returns>
-        /// <response code="200">Табель успешно обновлен</response>
+        /// <response code="200">Табель успешно обновлен.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpPut("update/{sheetId}")]
         public async Task<IActionResult> Update([FromRoute] Guid sheetId, [FromBody] SheetRequest request)
@@ -103,85 +103,18 @@ namespace Timesheets.Controllers
             return Ok();
         }
 
-        /// <summary> Удаляет запись табеля по Id</summary> //UnApproveSheet
+        /// <summary> Удаляет запись табеля по Id.</summary> //UnApproveSheet
         /// <returns>OK</returns>
-        /// <response code="200">Запись табеля удалена</response>
+        /// <response code="200">Запись табеля удалена.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpDelete("{sheetId}")]
         public async Task<IActionResult> Delete([FromRoute] Guid sheetId)
         {
             await _sheetManager.DeleteSheet(sheetId);
-
-            return Ok();
-        }
-
-        /// <summary> Подтверждает запись табеля </summary>
-        /// <returns>OK</returns>
-        /// <response code="200">Запись табеля подитверждена</response>
-        /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
-        /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        [Authorize(Roles = "admin, manager")]
-        [HttpPut("approveSheet/{sheetId}")]
-        public async Task<IActionResult> Approve([FromRoute] Guid sheetId)
-        {
-            var sheet = await _sheetManager.GetSheet(sheetId);
-
-            if (sheet == null)
-            {
-                return BadRequest();
-            }
-
-            await _sheetManager.ApproveSheet(sheetId);
-
-            return Ok();
-        }
-
-        /// <summary> Снимает подтверждение записи табеля </summary>
-        /// <returns>OK</returns>
-        /// <response code="200">Подтверждение записи табеля снято</response>
-        /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
-        /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        [Authorize(Roles = "admin, manager")]
-        [HttpPut("unApproveSheet/{sheetId}")]
-        public async Task<IActionResult> UnApprove([FromRoute] Guid sheetId)
-        {
-            var sheet = await _sheetManager.GetSheet(sheetId);
-
-            if (sheet == null)
-            {
-                return BadRequest();
-            }
-
-            await _sheetManager.UnApproveSheet(sheetId);
-
-            return Ok();
-        }
-
-        /// <summary> Меняет работника в записи табеля </summary>
-        /// <returns>OK</returns>
-        /// <response code="200">работник в табеля изменен</response>
-        /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
-        /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        [Authorize(Roles = "admin, manager")]
-        [HttpPut("changeEmployee/{sheetId}/{employeeId}")]
-        public async Task<IActionResult> ChangeEmployee([FromRoute] Guid sheetId, [FromRoute] Guid employeeId)
-        {
-            var sheet = await _sheetManager.GetSheet(sheetId);
-            var employee = await _employeeManager.GetEmployee(employeeId);
-
-            if (sheet == null || employee == null)
-            {
-                return BadRequest();
-            }
-
-            await _sheetManager.ChangeEmployee(sheetId, employeeId);
 
             return Ok();
         }

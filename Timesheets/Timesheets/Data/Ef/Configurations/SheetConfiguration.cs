@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Timesheets.Models.Entities;
-using Timesheets.Domain.Aggregates.SheetAggregate;
 
 namespace Timesheets.Data.Ef.Configurations
 {

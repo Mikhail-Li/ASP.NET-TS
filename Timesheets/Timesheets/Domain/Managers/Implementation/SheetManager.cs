@@ -6,7 +6,7 @@ using Timesheets.Domain.Managers.Interfaces;
 using Timesheets.Infrastructure.Extensions;
 using Timesheets.Models.Entities;
 using Timesheets.Models.Dto;
-using Timesheets.Domain.Aggregates.SheetAggregate;
+using Timesheets.Domain.Aggregates;
 
 namespace Timesheets.Domain.Managers.Implementation
 {
@@ -58,31 +58,5 @@ namespace Timesheets.Domain.Managers.Implementation
            await _sheetRepo.Delete(sheetId);
         }
 
-        public async Task ApproveSheet(Guid sheetId)
-        {
-            var sheet = await _sheetRepo.GetItem(sheetId);
-
-            sheet.ApproveSheet();
-
-            await _sheetRepo.Update(sheet);
-        }
-
-        public async Task UnApproveSheet(Guid sheetId)
-        {
-            var sheet = await _sheetRepo.GetItem(sheetId);
-
-            sheet.UnApproveSheet();
-
-            await _sheetRepo.Update(sheet);
-        }
-
-        public async Task ChangeEmployee(Guid sheetId, Guid newEmployeeId)
-        {
-            var sheet = await _sheetRepo.GetItem(sheetId);
-
-            sheet.ChangeEmployee(newEmployeeId);
-
-            await _sheetRepo.Update(sheet);
-        }
     }
 }

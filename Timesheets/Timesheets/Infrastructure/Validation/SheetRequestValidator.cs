@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using FluentValidation;
 using Timesheets.Infrastructure.Constants;
 using Timesheets.Models.Dto;
@@ -19,7 +16,7 @@ namespace Timesheets.Infrastructure.Validation
 
             RuleFor(x => x.Date)
                 .InclusiveBetween(DateTimeExtensions.Epoch, DateTime.UtcNow)
-                .WithMessage(ValidationMessages.InvalidSheetDate);
+                .WithMessage(ValidationMessages.SheetDate);
         }
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Timesheets.Domain.ValueObjects;
 using Timesheets.Models.Entities;
 using Timesheets.Infrastructure.Constants;
 using Timesheets.Models.Dto;
 
-namespace Timesheets.Domain.Aggregates.InvoiceAggregate
+namespace Timesheets.Domain.Aggregates
 {
     public class InvoiceAggregate : Invoice
     {

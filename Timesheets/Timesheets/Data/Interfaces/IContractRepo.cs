@@ -6,7 +6,7 @@ namespace Timesheets.Data.Interfaces
 {
     public interface IContractRepo: IRepoBase<Contract>
     {
-        /// <summary> Проверяет контракт на актуальность</summary>
+        /// <summary> Проверяет контракт на актуальность.</summary>
         Task<bool?> CheckContractIsActive(Guid id);
     }
 }

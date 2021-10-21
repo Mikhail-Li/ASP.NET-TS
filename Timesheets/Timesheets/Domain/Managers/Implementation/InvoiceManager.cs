@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Timesheets.Data.Interfaces;
 using Timesheets.Domain.Managers.Interfaces;
 using Timesheets.Infrastructure.Extensions;
 using Timesheets.Models.Entities;
 using Timesheets.Models.Dto;
-using Timesheets.Infrastructure.Constants;
-using Timesheets.Domain.Aggregates.InvoiceAggregate;
+
+using Timesheets.Domain.Aggregates;
 
 namespace Timesheets.Domain.Managers.Implementation
 {
@@ -35,7 +34,7 @@ namespace Timesheets.Domain.Managers.Implementation
             return await _invoiceRepo.GetItems();
         }
 
-        /// <summary> Создает счет/summary>
+        /// <summary> Создает счет</summary>
         public async Task<Guid> CreateInvoice(InvoiceRequest request)
         {
             request.EnsureNotNull(nameof(request));
@@ -52,7 +51,7 @@ namespace Timesheets.Domain.Managers.Implementation
             return invoice.Id;
         }
 
-        /// <summary> Обновляет счет/summary>
+        /// <summary> Обновляет счет</summary>
         public async Task UpdateInvoice(Guid invoiceId, InvoiceRequest request)
         {
             request.EnsureNotNull(nameof(request));
@@ -67,7 +66,7 @@ namespace Timesheets.Domain.Managers.Implementation
             await _invoiceRepo.Update(invoice);
         }
 
-        /// <summary> Удаляет счет/summary>
+        /// <summary> Удаляет счет </summary>
         public async Task DeleteInvoice(Guid id)
         {
             await _invoiceRepo.Delete(id);

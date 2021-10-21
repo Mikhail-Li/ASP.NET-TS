@@ -1,8 +1,4 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Timesheets.Domain.Managers.Interfaces;
 using Timesheets.Infrastructure.Constants;
 using Timesheets.Models.Dto;
@@ -17,19 +13,19 @@ namespace Timesheets.Infrastructure.Validation
         {
             RuleFor(x => x.Username)
                 .NotEmpty()
-                .WithMessage(ValidationMessages.InvalidUsername);
+                .WithMessage(ValidationMessages.Username);
 
             RuleFor(x => x.Password)
                 .NotEmpty()
-                .WithMessage(ValidationMessages.InvalidPassword);
+                .WithMessage(ValidationMessages.Password);
 
             RuleFor(x => x.Password.Length)
                 .GreaterThanOrEqualTo(_minPasswordLength)
-                .WithMessage(ValidationMessages.InvalidPasswordLength);
+                .WithMessage(ValidationMessages.PasswordLength);
 
             RuleFor(x => x.Role)
                 .NotEmpty()
-                .WithMessage(ValidationMessages.InvalidRole);
+                .WithMessage(ValidationMessages.Role);
         }
     }
 }

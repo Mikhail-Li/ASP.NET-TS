@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Timesheets.Infrastructure.Constants
+﻿namespace Timesheets.Infrastructure.Constants
 {
-    /// <summary> Список возможных ролей пользователей</summary>
+    /// <summary> Список возможных ролей пользователей.</summary>
     public static class UserRolesContants
     {
         public static string User = "user";

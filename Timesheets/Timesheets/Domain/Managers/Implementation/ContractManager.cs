@@ -36,6 +36,7 @@ namespace Timesheets.Domain.Managers.Implementation
             {
                 Id = Guid.NewGuid(),
                 Title = request.Title,
+                ClientId = request.ClientId,
                 DateStart = request.DateStart,
                 DateEnd = request.DateEnd,
                 Description = request.Description,                
@@ -55,6 +56,7 @@ namespace Timesheets.Domain.Managers.Implementation
             {
                 Id = id,
                 Title = request.Title,
+                ClientId = request.ClientId,
                 DateStart = request.DateStart,
                 DateEnd = request.DateEnd,
                 Description = request.Description,

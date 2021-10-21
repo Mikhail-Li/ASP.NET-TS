@@ -7,7 +7,7 @@ namespace Timesheets.Domain.ValueObjects
 {
     public class SpentTime : ValueObject
     {
-        public int Amount { get; }
+        private int Amount { get; }
 
         private SpentTime() 
         { 
@@ -23,7 +23,7 @@ namespace Timesheets.Domain.ValueObjects
         {
             if (amount < 0 || amount > 8)
             {
-                throw new ArgumentException("amount cannot should be between 0 and 8.");
+                throw new ArgumentException("Amount cannot should be between 0 and 8.");
             }
 
             return new SpentTime(amount);

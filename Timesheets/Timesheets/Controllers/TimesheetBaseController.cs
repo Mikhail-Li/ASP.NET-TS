@@ -29,7 +29,7 @@ namespace Timesheets.Controllers
                         {
                             if (!result.Errors.ContainsKey(propertyValue))
                                 result.Errors.Add(propertyValue, value.Errors.FirstOrDefault()?.ErrorMessage
-                                                                 ?? ValidationMessages.InvalidValue);
+                                                                 ?? ValidationMessages.Value);
                         }
                     }
                 }

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Timesheets.Domain.Aggregates.InvoiceAggregate;
+using Timesheets.Domain.Aggregates;
 using Timesheets.Models.Dto;
 
 namespace TimesheetTest.Builders
@@ -12,7 +8,7 @@ namespace TimesheetTest.Builders
     {
         public Guid InvoiceContractId = Guid.NewGuid();
         public DateTime InvoiceDateStart = DateTime.MinValue;
-        public DateTime InvvoiceDateEnd = DateTime.Now;
+        public DateTime InvoiceDateEnd = DateTime.Now;
 
         public InvoiceAggregate CreateRandomInvoice()
         {
@@ -20,7 +16,7 @@ namespace TimesheetTest.Builders
             {
                 ContractId = InvoiceContractId,
                 DateStart = InvoiceDateStart,
-                DateEnd = InvvoiceDateEnd
+                DateEnd = InvoiceDateEnd
             };
 
             var result = InvoiceAggregate.Create(invoiceRequest);

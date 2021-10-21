@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Timesheets.Domain.Managers.Interfaces;
-using Timesheets.Models;
 using Timesheets.Models.Dto;
 
 namespace Timesheets.Controllers
@@ -20,11 +19,13 @@ namespace Timesheets.Controllers
             _clientManager = clientManager;
         }
 
-        /// <summary> Возвращает запись клиента по Id </summary>
+        
+        
+        /// <summary> Возвращает запись клиента по Id.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Запрос выполнен.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
         [Authorize(Roles = "user, admin, manager")]
         [HttpGet("{id}")]
@@ -40,11 +41,11 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        /// <summary> Возвращает записи всех клиентов в БД </summary>
+        /// <summary> Возвращает записи всех клиентов в БД.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Запрос выполнен.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
         [Authorize(Roles = "user, admin, manager")]
         [HttpGet("clients")]
@@ -54,13 +55,13 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        /// <summary> Добавляет запись клиента и возвращает сгенерированный Id клиента </summary>
+        /// <summary> Добавляет запись клиента и возвращает сгенерированный Id клиента.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Запись клиента создана.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpPost("client")]
         public async Task<IActionResult> Create([FromBody] ClientRequest request)
@@ -70,12 +71,12 @@ namespace Timesheets.Controllers
             return Ok(id);
         }
 
-        /// <summary> Обновляет запись клиента. </summary>
+        /// <summary> Обновляет запись клиента.</summary>
         /// <response code="200">Запись клиента обновлена.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] ClientRequest request)
@@ -85,12 +86,12 @@ namespace Timesheets.Controllers
             return Ok();
         }
 
-        /// <summary> Удаляет запись клиента по Id </summary>
+        /// <summary> Удаляет запись клиента по Id.</summary>
         /// <response code="200">Запись клиента удалена.</response>
         /// <response code="400">Ошибка в запросе.</response>
         /// <response code="401">Отсутствует авторизация</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)

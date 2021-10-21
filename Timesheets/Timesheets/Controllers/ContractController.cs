@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Timesheets.Domain.Managers.Interfaces;
-using Timesheets.Models;
 using Timesheets.Models.Dto;
 
 namespace Timesheets.Controllers
@@ -40,11 +39,11 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        /// <summary> Возвращает записи всех контрактов в БД </summary>
+        /// <summary> Возвращает записи всех контрактов в БД.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Запрос выполнен.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
         [Authorize(Roles = "user, admin, manager")]
         [HttpGet("contracts")]
@@ -54,13 +53,13 @@ namespace Timesheets.Controllers
             return Ok(result);
         }
 
-        /// <summary> Добавляет запись контракта и возвращает сгенерированный Id контракта </summary>
+        /// <summary> Добавляет запись контракта и возвращает сгенерированный Id контракта.</summary>
         /// <returns>OK</returns>
         /// <response code="200">Запись контракта создана.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpPost("contract")]
         public async Task<IActionResult> Create([FromBody] ContractRequest request)
@@ -70,12 +69,12 @@ namespace Timesheets.Controllers
             return Ok(id);
         }
 
-        /// <summary> Обновляет запись контракта. </summary>
+        /// <summary> Обновляет запись контракта.</summary>
         /// <response code="200">Запись контракта обновлена.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Update([FromRoute] Guid id, [FromBody] ContractRequest request)
@@ -85,12 +84,12 @@ namespace Timesheets.Controllers
             return Ok();
         }
 
-        /// <summary> Удаляет запись контракта по Id </summary>
+        /// <summary> Удаляет запись контракта по Id.</summary>
         /// <response code="200">Запись контракта удалена.</response>
         /// <response code="400">Ошибка в запросе.</response>
-        /// <response code="401">Отсутствует авторизация</response>
+        /// <response code="401">Отсутствует авторизация.</response>
         /// <response code="403">Недостаточно прав для выполнения операции.</response>
-        /// <response code="500">Внутренняя ошибка Сервера</response>
+        /// <response code="500">Внутренняя ошибка Сервера.</response>
         [Authorize(Roles = "admin, manager")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete([FromRoute] Guid id)
